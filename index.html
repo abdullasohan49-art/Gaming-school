@@ -52,6 +52,11 @@
             border-radius: 4px;
         }
 
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
         .nav-links a {
             color: white;
             text-decoration: none;
@@ -88,24 +93,6 @@
             outline: none;
             width: 100%;
             font-size: 14px;
-        }
-
-        /* হিরো সেকশন */
-        .hero {
-            background: linear-gradient(135deg, #00af66, #007944);
-            color: white;
-            text-align: center;
-            padding: 45px 20px;
-        }
-
-        .hero h1 {
-            font-size: 26px;
-            margin-bottom: 8px;
-        }
-
-        .hero p {
-            font-size: 14px;
-            opacity: 0.9;
         }
 
         /* কন্টেইনার ও কার্ড গ্রিড */
@@ -234,10 +221,11 @@
 
     <!-- হেডার -->
     <header class="navbar">
-<div class="logo">
-    <img src="logo.png" alt="AppBazarBD Logo" style="height: 30px; width: 30px; object-fit: contain; vertical-align: middle; margin-right: 8px;">
-    <span>AppBazarBD</span>
-</div>
+        <div class="logo">
+            <img src="logo.png" alt="AppBazarBD Logo" style="height: 30px; width: 30px; object-fit: contain; vertical-align: middle; margin-right: 8px;">
+            <span>AppBazarBD</span>
+        </div>
+        <nav class="nav-links">
             <a onclick="filterSelection('all')" class="active" id="btn-all">হোম</a>
             <a onclick="filterSelection('games')" id="btn-games">গেমস</a>
             <a onclick="filterSelection('apps')" id="btn-apps">অ্যাপস</a>
@@ -246,9 +234,9 @@
             <i class="fa-solid fa-search"></i>
             <input type="text" id="searchInput" onkeyup="searchApps()" placeholder="সার্চ করুন অ্যাপ বা গেম...">
         </div>
-   
+    </header>
 
-    <!-- অ্যাপ ও গেম তালিকা (ফাঁকা ঘর, আপনার পছন্দমতো এডিট করবেন) -->
+    <!-- অ্যাপ ও গেম তালিকা -->
     <main class="container">
         <h2>ট্রেন্ডিং অ্যাপস এবং গেমস</h2>
         
@@ -257,12 +245,11 @@
             <!-- গেম বা অ্যাপ যোগ করার ঘর ১ -->
             <div class="app-card" data-category="apps" data-name="aurora store">
                 <img src="https://lh3.googleusercontent.com/d/1RW_jfryplbXYEw7zlYKybaO3Ss7rWWVK" alt="Logo" class="app-icon">
-                
-                    <h3>aurora store </h3>
+                <div class="app-info">
+                    <h3>aurora store</h3>
                     <p class="category">ক্যাটেগরি : APP সাইজ : 8MB</p>
                     <p class="desc">এটা একটি অ্যাপ স্টোর এখানে অনেক অ্যাপ পাওয়া যায় সব ধরনের।</p>
-                    <!-- ডিরেক্ট ডাউনলোড লিংক ফরম্যাট: https://drive.google.com/uc?export=download&id=আপনার_ফাইলের_আইডি -->
-                    <a href=https://drive.google.com/file/d/1AQQHD21Dmb22ZIj_T14MuzLgzu54wakC/view?usp=drive_linkclass="download-btn" download><i class="fa-solid fa-download"></i> ডিরেক্ট ডাউনলোড (Free)</a>
+                    <a href="https://drive.google.com/file/d/1AQQHD21Dmb22ZIj_T14MuzLgzu54wakC/view?usp=drive_link" class="download-btn" download><i class="fa-solid fa-download"></i> ডিরেক্ট ডাউনলোড (Free)</a>
                 </div>
             </div>
 
