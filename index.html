@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming School - Free APK Downloader</title>
+    <!-- ব্রাউজার ট্যাবের জন্য সুন্দর গেমিং লোগো (Favicon) -->
+    <link rel="icon" type="image/png" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/svgs/solid/gamepad.svg">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        /* ন্যাভবার বা হেডার ডিজাইন */
+        .navbar {
+            background-color: #00af66;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: #fff;
+            background: #00874a;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #e0f2f1;
+            border-bottom: 2px solid white;
+            padding-bottom: 3px;
+        }
+
+        /* সার্চ বক্স */
+        .search-box {
+            background: white;
+            display: flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 20px;
+            width: 280px;
+        }
+
+        .search-box i {
+            color: #888;
+            margin-right: 8px;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        /* হিরো সেকশন */
+        .hero {
+            background: linear-gradient(135deg, #00af66, #007944);
+            color: white;
+            text-align: center;
+            padding: 45px 20px;
+        }
+
+        .hero h1 {
+            font-size: 26px;
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* কন্টেইনার ও কার্ড গ্রিড */
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+
+        .container h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #222;
+            border-left: 4px solid #00af66;
+            padding-left: 10px;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .app-card {
+            background: white;
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: 0.2s;
+        }
+
+        .app-card:hover {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            margin-right: 15px;
+            flex-shrink: 0;
+            object-fit: cover;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 24px;
+        }
+
+        .app-info {
+            flex-grow: 1;
+        }
+
+        .app-info h3 {
+            font-size: 17px;
+            color: #222;
+            margin-bottom: 3px;
+        }
+
+        .category {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 5px;
+        }
+
+        .desc {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        /* ডাউনলোড বাটন */
+        .download-btn {
+            display: inline-block;
+            background-color: #00af66;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+
+        .download-btn:hover {
+            background-color: #00874a;
+        }
+
+        /* ফুটার */
+        footer {
+            text-align: center;
+            background-color: #222;
+            color: white;
+            padding: 15px;
+            margin-top: 40px;
+            font-size: 13px;
+        }
+
+        /* মোবাইল রেসপন্সিভ */
+        @media (max-width: 700px) {
+            .navbar {
+                flex-direction: column;
+                padding: 10px;
+            }
+            .nav-links {
+                margin: 10px 0;
+            }
+            .search-box {
+                width: 100%;
+            }
+            .app-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .app-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- হেডার -->
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-gamepad"></i> Gaming<span>School</span>
+        </div>
+        <nav class="nav-links">
+            <a onclick="filterSelection('all')" class="active" id="btn-all">হোম</a>
+            <a onclick="filterSelection('games')" id="btn-games">গেমস</a>
+            <a onclick="filterSelection('apps')" id="btn-apps">অ্যাপস</a>
+        </nav>
+        <div class="search-box">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" id="searchInput" onkeyup="searchApps()" placeholder="সার্চ করুন অ্যাপ বা গেম...">
+        </div>
+    </header>
+
+    <!-- হিরো সেকশন -->
+    <section class="hero">
+        <h1>সেরা অ্যান্ড্রয়েড গেমস এবং অ্যাপস ডাউনলোড করুন</h1>
+        <p>ফাস্ট, নিরাপদ এবং ডিরেক্ট অটো-ডাউনলোড লিংক।</p>
+    </section>
+
+    <!-- অ্যাপ ও গেম তালিকা (ফাঁকা ঘর, আপনার পছন্দমতো এডিট করবেন) -->
+    <main class="container">
+        <h2>ট্রেন্ডিং অ্যাপস এবং গেমস</h2>
+        
+        <div class="app-grid" id="appGrid">
+            
+            <!-- গেম বা অ্যাপ যোগ করার ঘর ১ -->
+            <div class="app-card" data-category="games" data-name="free fire">
+                <img src="" alt="Logo" class="app-icon">
+                <div class="app-info">
+                    <h3>Free Fire (এখানে নাম লিখুন)</h3>
+                    <p class="category">ক্যাটেগরি: গেমস | সাইজ: [সাইজ]</p>
+                    <p class="desc">এখানে গেমের বিবরণ লিখুন।</p>
+                    <!-- ডিরেক্ট ডাউনলোড লিংক ফরম্যাট: https://drive.google.com/uc?export=download&id=আপনার_ফাইলের_আইডি -->
+                    <a href="এখানে_গুগল_ড্রাইভের_ডিরেক্ট_লিংক_দিন" class="download-btn" download><i class="fa-solid fa-download"></i> ডিরেক্ট ডাউনলোড (Free)</a>
+                </div>
+            </div>
+
+            <!-- গেম বা অ্যাপ যোগ করার ঘর ২ -->
+            <div class="app-card" data-category="apps" data-name="app name">
+                <img src="" alt="Logo" class="app-icon">
+                <div class="app-info">
+                    <h3>[এখানে অ্যাপ বা গেমের নাম দিন]</h3>
+                    <p class="category">ক্যাটেগরি: অ্যাপস | সাইজ: [সাইজ]</p>
+                    <p class="desc">[এখানে বিবরণ লিখুন]</p>
+                    <a href="এখানে_গুগল_ড্রাইভের_ডিরেক্ট_লিংক_দিন" class="download-btn" download><i class="fa-solid fa-download"></i> ডিরেক্ট ডাউনলোড (Free)</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ফুটার -->
+    <footer>
+        <p>&copy; ২০২৬ Gaming School. All Rights Reserved.</p>
+    </footer>
+
+    <!-- সার্চ ও ফিল্টারিং জাভাস্ক্রিপ্ট কোড -->
+    <script>
+        function searchApps() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('app-card');
+
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].getAttribute('data-name');
+                if (name.includes(input)) {
+                    cards[i].style.display = "flex";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+
+        function filterSelection(category) {
+            let cards = document.getElementsByClassName('app-card');
+            
+            document.getElementById('btn-all').classList.remove('active');
+            document.getElementById('btn-games').classList.remove('active');
+            document.getElementById('btn-apps').classList.remove('active');
+            
+            if(category === 'all') document.getElementById('btn-all').classList.add('active');
+            if(category === 'games') document.getElementById('btn-games').classList.add('active');
+            if(category === 'apps') document.getElementById('btn-apps').classList.add('active');
+
+            for (let i = 0; i < cards.length; i++) {
+                if (category === 'all') {
+                    cards[i].style.display = "flex";
+                } else {
+                    if (cards[i].getAttribute('data-category') === category) {
+                        cards[i].style.display = "flex";
+                    } else {
+                        cards[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
