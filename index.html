@@ -16,9 +16,15 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        body {
+        html, body {
+            height: 100%;
             background-color: #f0f2f5;
             color: #333;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
         }
 
         /* ন্যাভবার বা হেডার ডিজাইন */
@@ -98,21 +104,23 @@
         /* কন্টেইনার ও কার্ড গ্রিড */
         .container {
             max-width: 900px;
-            margin: 30px auto;
+            margin: 25px auto;
             padding: 0 15px;
+            flex: 1;
+            width: 100%;
         }
 
         .app-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 15px;
+            gap: 12px;
         }
 
         .app-card {
             background: white;
             display: flex;
             align-items: center;
-            padding: 15px;
+            padding: 12px 15px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             transition: 0.2s;
@@ -123,9 +131,9 @@
         }
 
         .app-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
             margin-right: 15px;
             flex-shrink: 0;
             object-fit: cover;
@@ -134,7 +142,7 @@
             align-items: center;
             justify-content: center;
             color: #777;
-            font-size: 24px;
+            font-size: 20px;
         }
 
         .app-info {
@@ -142,21 +150,21 @@
         }
 
         .app-info h3 {
-            font-size: 17px;
+            font-size: 16px;
             color: #222;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
 
         .category {
-            font-size: 12px;
+            font-size: 11px;
             color: #777;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
 
         .desc {
-            font-size: 13px;
+            font-size: 12px;
             color: #555;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         /* ডাউনলোড বাটন */
@@ -164,11 +172,11 @@
             display: inline-block;
             background-color: #00af66;
             color: white;
-            padding: 6px 14px;
+            padding: 5px 12px;
             border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 13px;
+            font-size: 12px;
             transition: 0.2s;
         }
 
@@ -182,18 +190,19 @@
             text-align: center;
             font-size: 18px;
             color: #000000;
-            margin-top: 40px;
+            margin-top: 50px;
             font-weight: 500;
         }
 
-        /* ফুটার */
+        /* ফুটার একদম নিচে চলে যাওয়ার জন্য */
         footer {
             text-align: center;
             background-color: #222;
             color: white;
-            padding: 15px;
-            margin-top: 40px;
+            padding: 12px;
             font-size: 13px;
+            width: 100%;
+            margin-top: auto;
         }
 
         /* মোবাইল রেসপন্সিভ */
@@ -214,7 +223,7 @@
             }
             .app-icon {
                 margin-right: 0;
-                margin-bottom: 10px;
+                margin-bottom: 8px;
             }
         }
     </style>
@@ -248,19 +257,19 @@
                 <img src="https://lh3.googleusercontent.com/d/1RW_jfryplbXYEw7zlYKybaO3Ss7rWWVK" alt="Logo" class="app-icon">
                 <div class="app-info">
                     <h3>aurora store</h3>
-                    <p class="category">ক্যাটেগরি : APP সাইজ : 8MB</p>
+                    <p class="category">ক্যাটেগরি : APP | সাইজ : 8MB</p>
                     <p class="desc">এটা একটি অ্যাপ স্টোর এখানে অনেক অ্যাপ পাওয়া যায় সব ধরনের।</p>
                     <a href="https://drive.google.com/file/d/1AQQHD21Dmb22ZIj_T14MuzLgzu54wakC/view?usp=drive_link" class="download-btn" download><i class="fa-solid fa-download"></i> ডিরেক্ট ডাউনলোড (Free)</a>
                 </div>
             </div>
 
             <!-- গেম বা অ্যাপ যোগ করার ঘর ২ -->
-            <div class="app-card" data-category="apps" data-name="app name">
+            <div class="app-card" data-category="games" data-name="free fire">
                 <img src="" alt="Logo" class="app-icon">
                 <div class="app-info">
-                    <h3>[এখানে অ্যাপ বা গেমের নাম দিন]</h3>
-                    <p class="category">ক্যাটেগরি: অ্যাপস | সাইজ: [সাইজ]</p>
-                    <p class="desc">[এখানে বিবরণ লিখুন]</p>
+                    <h3>Free Fire</h3>
+                    <p class="category">ক্যাটেগরি: গেমস | সাইজ: 500MB</p>
+                    <p class="desc">জনপ্রিয় ব্যাটল রয়্যাল গেম।</p>
                     <a href="এখানে_গুগল_ড্রাইভের_ডিরেক্ট_লিংক_দিন" class="download-btn" download><i class="fa-solid fa-download"></i> ডিরেক্ট ডাউনলোড (Free)</a>
                 </div>
             </div>
@@ -276,7 +285,7 @@
         <p>&copy; ২০২৬ Gaming School. All Rights Reserved.</p>
     </footer>
 
-    <!-- প্রফেশনাল সার্চ ও ফিল্টারিং জাভাস্ক্রিপ্ট কোড -->
+    <!-- সার্চ ও ফিল্টারিং জাভাস্ক্রিপ্ট -->
     <script>
         function searchApps() {
             let input = document.getElementById('searchInput').value.toLowerCase().trim();
@@ -287,8 +296,7 @@
             for (let i = 0; i < cards.length; i++) {
                 let name = cards[i].getAttribute('data-name').toLowerCase();
                 
-                // যদি সার্চ বক্সে টাইপ করা অক্ষর দিয়ে অ্যাপের নাম শুরু হয় অথবা নামের ভেতরে ওই অক্ষর থাকে
-                if (name.startsWith(input) || name.includes(input)) {
+                if (input === "" || name.startsWith(input) || name.includes(input)) {
                     cards[i].style.display = "flex";
                     visibleCount++;
                 } else {
@@ -296,7 +304,7 @@
                 }
             }
 
-            if (visibleCount === 0) {
+            if (visibleCount === 0 && input !== "") {
                 notFound.style.display = "block";
             } else {
                 notFound.style.display = "none";
