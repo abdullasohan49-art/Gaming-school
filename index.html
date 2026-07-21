@@ -102,14 +102,6 @@
             padding: 0 15px;
         }
 
-        .container h2 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            color: #222;
-            border-left: 4px solid #00af66;
-            padding-left: 10px;
-        }
-
         .app-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -184,6 +176,16 @@
             background-color: #00874a;
         }
 
+        /* নট ফাউন্ড মেসেজ স্টাইল */
+        #notFoundMessage {
+            display: none;
+            text-align: center;
+            font-size: 18px;
+            color: #000000;
+            margin-top: 40px;
+            font-weight: 500;
+        }
+
         /* ফুটার */
         footer {
             text-align: center;
@@ -238,7 +240,6 @@
 
     <!-- অ্যাপ ও গেম তালিকা -->
     <main class="container">
-        <h2>ট্রেন্ডিং অ্যাপস এবং গেমস</h2>
         
         <div class="app-grid" id="appGrid">
             
@@ -265,6 +266,9 @@
             </div>
 
         </div>
+
+        <!-- নট ফাউন্ড টেক্সট -->
+        <div id="notFoundMessage">অ্যাপ নট ফাউন্ড</div>
     </main>
 
     <!-- ফুটার -->
@@ -272,24 +276,38 @@
         <p>&copy; ২০২৬ Gaming School. All Rights Reserved.</p>
     </footer>
 
-    <!-- সার্চ ও ফিল্টারিং জাভাস্ক্রিপ্ট কোড -->
+    <!-- প্রফেশনাল সার্চ ও ফিল্টারিং জাভাস্ক্রিপ্ট কোড -->
     <script>
         function searchApps() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
+            let input = document.getElementById('searchInput').value.toLowerCase().trim();
             let cards = document.getElementsByClassName('app-card');
+            let notFound = document.getElementById('notFoundMessage');
+            let visibleCount = 0;
 
             for (let i = 0; i < cards.length; i++) {
-                let name = cards[i].getAttribute('data-name');
-                if (name.includes(input)) {
+                let name = cards[i].getAttribute('data-name').toLowerCase();
+                
+                // যদি সার্চ বক্সে টাইপ করা অক্ষর দিয়ে অ্যাপের নাম শুরু হয় অথবা নামের ভেতরে ওই অক্ষর থাকে
+                if (name.startsWith(input) || name.includes(input)) {
                     cards[i].style.display = "flex";
+                    visibleCount++;
                 } else {
                     cards[i].style.display = "none";
                 }
+            }
+
+            if (visibleCount === 0) {
+                notFound.style.display = "block";
+            } else {
+                notFound.style.display = "none";
             }
         }
 
         function filterSelection(category) {
             let cards = document.getElementsByClassName('app-card');
+            let notFound = document.getElementById('notFoundMessage');
+            document.getElementById('searchInput').value = "";
+            notFound.style.display = "none";
             
             document.getElementById('btn-all').classList.remove('active');
             document.getElementById('btn-games').classList.remove('active');
